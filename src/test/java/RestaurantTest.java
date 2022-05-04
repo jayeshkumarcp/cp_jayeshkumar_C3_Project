@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -73,4 +74,11 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void order_value_for_items_should_return_expected_total()  {
+        getRestaurant();
+        List<Item> menu = restaurant.getMenu();
+        assertEquals(388,restaurant.getOrderValue(menu));
+    }
 }
