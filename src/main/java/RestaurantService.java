@@ -5,11 +5,14 @@ import java.util.List;
 public class RestaurantService {
     private static final List<Restaurant> restaurants = new ArrayList<>();
 
-    public Restaurant findRestaurantByName(String restaurantName) {
+    public Restaurant findRestaurantByName(String restaurantName) throws restaurantNotFoundException{
 
         Restaurant lRestaurant = restaurants.stream().filter(restaurant -> restaurantName.equals(restaurant.getName()))
                 .findAny()
                 .orElse(null);
+        if(null == lRestaurant) {
+            throw new restaurantNotFoundException(restaurantName);
+        }
         return lRestaurant;
     }
 
